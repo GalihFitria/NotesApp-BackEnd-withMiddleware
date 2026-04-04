@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import notes from "../src/notes.js";
+import notes from "../notes.js";
 
 export const createNote = (req, res, next) => {
   const { title = "untitled", tags, body } = req.body;
