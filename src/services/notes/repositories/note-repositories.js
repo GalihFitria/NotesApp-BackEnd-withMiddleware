@@ -1,3 +1,4 @@
+import pkg from 'pg';
 import { Pool } from 'pg';
 import { nanoid } from 'nanoid';
 
@@ -36,4 +37,28 @@ class NoteRepositories {
 
     return result.rows[0];
   }
+
+  async updateNote({ id, title, body, tags }) {
+    const updatedAt = new Date().toISOString();
+
+    const query = {
+      text: 'UPDATE notes SET title = $1, body = $2, tags = $3, updated_at = $4 WHERE id = $5 RETURNING id',
+      values: [title, body, tags, updatedAt, id],
+    };
+
+    const result = await this.pool.query(query);
+    return result.rows[0];
+  }
+
+  async deleteNote(id) {
+    const query = {
+      text: 'DELETE FROM notes WHERE id = $1 RETURNING id',
+      values: [id],
+    };
+
+    const result = await this.pool.query(query);
+    return result.rows[0];
+  }
 }
+
+export default new NoteRepositories();
