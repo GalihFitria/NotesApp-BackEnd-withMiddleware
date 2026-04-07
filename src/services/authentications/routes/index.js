@@ -1,8 +1,9 @@
+import { Router } from 'express';
 import {
   login,
   refreshToken,
   logout,
-} from '../controllers/authentication-controller.js';
+} from '../controller/authentication-controller.js';
 import validate from '../../../middlewares/validate.js';
 import {
   postAuthenticationPayloadSchema,

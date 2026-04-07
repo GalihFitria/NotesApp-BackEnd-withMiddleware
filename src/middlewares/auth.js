@@ -1,4 +1,4 @@
-import TokenManager from '../security/token-manager';
+import TokenManager from '../security/token-manager.js';
 import response from '../utils/response.js';
 
 async function authenticateToken(req, res, next) {

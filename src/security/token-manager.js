@@ -1,4 +1,4 @@
-import jwt, { verify } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import InvariantError from '../exceptions/invariant-error.js';
 
 const TokenManager = {
