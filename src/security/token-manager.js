@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt, { verify } from 'jsonwebtoken';
 import InvariantError from '../exceptions/invariant-error.js';
 
 const TokenManager = {
@@ -15,6 +15,16 @@ const TokenManager = {
     } catch (error) {
       console.log(error);
       throw new InvariantError('Refresh token tidak valid');
+    }
+  },
+
+  verify: (accessToken, secret) => {
+    try {
+      const payload = jwt.verify(accessToken, secret);
+      return payload;
+    } catch (error) {
+      console.log(error);
+      throw new InvariantError('Access token tidak valid');
     }
   },
 };
